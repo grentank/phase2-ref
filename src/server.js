@@ -6,6 +6,7 @@ import path from 'path';
 import jsxRender from './utils/jsxRender';
 import indexRouter from './routes/indexRouter';
 import apiRouter from './routes/apiRouter';
+import authRouter from './routes/authRouter';
 
 require('dotenv').config();
 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/api/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
 

@@ -1,21 +1,25 @@
 import React from 'react';
 import Post from '../ui/Post';
-import Sidebar from '../ui/Sidebar';
 
 export default function Home() {
   return (
-    <div className="content">
-      <div className="main">
-        <h5>Recent posts</h5>
-        <ul className="posts">
-          <Post />
-          <Post />
-          <Post />
-        </ul>
+    <>
+      <div className="row justify-content-md-center">
+        <div className="col-md-auto">
+          <h2>Most recent posts</h2>
+        </div>
       </div>
-      <div className="side">
-        <Sidebar />
+      <div className="row">
+        <div className="col-12">
+          <Post />
+        </div>
+        <div className="col-12">
+          <Post />
+        </div>
+        <div className="col-12">
+          <Post />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

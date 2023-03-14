@@ -1,51 +1,110 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
 export default function SignUp() {
+  const [formData, setFormData] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    repeatPassword: '',
+  });
+
+  const changeHandler = (e) =>
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const valid = formData.password === formData.repeatPassword ? ' is-valid' : ' is-invalid';
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.repeatPassword) return;
+    axios
+      .post('/api/auth/signup', formData)
+      .then(() => {
+        window.location = '/';
+      })
+      .catch(console.error);
+  };
+
   return (
-    <div className="content">
-      <div className="main">
-        <h5>Sign Up</h5>
-        <form>
-          <ul>
-            <label htmlFor="input-email">
-              Email
-              <input type="email" name="email" id="input-email" style={{ color: '#0000' }} />
-            </label>
-            <label htmlFor="input-firstName">
-              First Name
-              <input type="text" name="firstName" id="input-firstName" style={{ color: '#0000' }} />
-            </label>
-            <label htmlFor="input-lastName">
-              Last Name
-              <input type="text" name="lastName" id="input-lastName" style={{ color: '#0000' }} />
-            </label>
-            <label htmlFor="input-password">
-              Password
+    <div className="row justify-content-center">
+      <div className="col-4 align-self-center text-center">
+        <h3>Register</h3>
+        <form onSubmit={submitHandler}>
+          <div className="mb-3">
+            <div className="input-group">
               <input
-                type="password"
-                name="password"
-                id="input-password"
-                style={{ color: '#0000' }}
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={changeHandler}
+                className="form-control"
+                id="email-input"
+                placeholder="Email"
+                aria-describedby="basic-addon3"
+                required
               />
-            </label>
-            <label htmlFor="input-password-rep">
-              Repeat Password
-              <input
-                type="password"
-                name="passwordRepeat"
-                id="input-password-rep"
-                style={{ color: '#0000' }}
-              />
-            </label>
-            <button type="submit" className="btn">
-              <span>Add</span>
+            </div>
+            <div className="form-text">
+              Email must be of the form <strong>***@***</strong>
+            </div>
+          </div>
+
+          <div className="input-group mb-3">
+            <span className="input-group-text">Name</span>
+            <input
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={changeHandler}
+              className="form-control"
+              placeholder="First name"
+              aria-label="Username"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={changeHandler}
+              className="form-control"
+              placeholder="Last name"
+              aria-label="Server"
+              required
+            />
+          </div>
+
+          <div className="input-group mb-3">
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={changeHandler}
+              className="form-control"
+              placeholder="Password"
+              aria-label="Username"
+              required
+            />
+            <input
+              type="password"
+              name="repeatPassword"
+              value={formData.repeatPassword}
+              onChange={changeHandler}
+              className={`form-control${valid}`}
+              placeholder="Repeat password"
+              aria-label="Server"
+              required
+            />
+            <div className="invalid-feedback">Passwords should be identical</div>
+          </div>
+
+          <div className="input-group mb-3 d-grid">
+            <button type="submit" className="btn btn-lg btn-outline-primary">
+              Sign Up
             </button>
-          </ul>
+          </div>
         </form>
       </div>
-      {/* <div className="side">
-        <Sidebar />
-      </div> */}
     </div>
   );
 }

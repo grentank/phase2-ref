@@ -4,43 +4,47 @@ export default function Navbar() {
   const firstName = 'Bob';
   const lastName = 'Bobovski';
   return (
-    <>
-      <header>
-        <div className="home">
-          <i className="fas fa-home" />
-        </div>
-        <ul className="menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/replies">My replies</a>
-          </li>
-          <li>
-            <a href="/login">Login</a>
-          </li>
-          <li>
-            <a href="/signup">Register</a>
-          </li>
-        </ul>
-      </header>
-      <div className="banner">
-        <div className="ava">
-          <img
-            src={`https://eu.ui-avatars.com/api/?background=4abbf3&color=fff&name=${firstName}+${lastName}&size=100`}
-            alt="ava"
-          />
-        </div>
-        <h4>
-          {firstName} {lastName}
-          <span>#5136</span>
-        </h4>
-        <div className="btns">
-          <div className="btn">
-            <span>Add new post</span>
+    <nav className="navbar navbar-expand bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              style={{ borderRadius: '50%' }}
+              src={`https://eu.ui-avatars.com/api/?background=4abbf3&color=fff&name=${firstName}+${lastName}&size=100`}
+              alt="ava"
+            />
+            <h4 style={{ margin: '10px' }}>
+              {firstName} {lastName}
+              <span>#5136</span>
+            </h4>
           </div>
+        </a>
+        <div className="navbar-nav">
+          <a className="nav-link active" href="/">
+            Home
+          </a>
+          <a className="nav-link" href="/replies">
+            Replies
+          </a>
+          <a className="nav-link disabled" href="/">
+            Add post
+          </a>
+        </div>
+        <div className="navbar-nav">
+          <a className="nav-link active" href="/login">
+            Login
+          </a>
+          <a className="nav-link" href="/signup">
+            Signup
+          </a>
         </div>
       </div>
-    </>
+    </nav>
   );
 }
