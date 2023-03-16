@@ -6,12 +6,12 @@ import Replies from './pages/Replies';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 
-export default function App() {
+export default function App({ user, recentPosts }) {
   return (
     <div className="container">
-      <Navbar />
+      <Navbar user={user} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home recentPosts={recentPosts} />} />
         <Route path="/replies" element={<Replies />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

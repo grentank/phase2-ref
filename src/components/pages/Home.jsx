@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from '../ui/Post';
 
-export default function Home() {
+export default function Home({ recentPosts }) {
   return (
     <>
       <div className="row justify-content-md-center">
@@ -10,15 +10,11 @@ export default function Home() {
         </div>
       </div>
       <div className="row">
-        <div className="col-12">
-          <Post />
-        </div>
-        <div className="col-12">
-          <Post />
-        </div>
-        <div className="col-12">
-          <Post />
-        </div>
+        {recentPosts.map((post) => (
+          <div className="col-12" key={post.id}>
+            <Post post={post} />
+          </div>
+        ))}
       </div>
     </>
   );

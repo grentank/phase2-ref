@@ -30,7 +30,7 @@ export default function Login() {
               />
             </div>
             <div className="form-text">
-              Email must be of the form <strong>***@***</strong>
+              Mock users: "1@1", password "1"; "2@2" with password "2"
             </div>
           </div>
 

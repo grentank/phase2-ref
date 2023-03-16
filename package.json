@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "babel-node src/server.js",
     "start": "webpack -d eval-source-map && babel-node src/server.js",
     "webpack": "webpack -wd eval-source-map",
-    "launch": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && webpack -d eval-source-map && babel-node src/server.js",
-    "deps": "npm i -D @babel/node @babel/preset-react @babel/preset-env @babel/plugin-proposal-class-properties babel-loader webpack webpack-cli morgan sequelize-cli && npm i express react react-dom react-router-dom dotenv sequelize pg pg-hstore express-session session-file-store axios bcrypt sass"
+    "launch": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && webpack -d eval-source-map && babel-node src/server.js"
   },
   "keywords": [],
   "author": "",
